@@ -1,30 +1,31 @@
-package com.example.bitnow.ui.home
+package com.example.bitnow.ui.liveprice
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bitnow.R
+open class URL
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private val viewModel: LivePriceModel by lazy {
+        ViewModelProvider(this).get(LivePriceModel::class.java)
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        val livePriceEditText: EditText = root.findViewById(R.id.text_home)
+        viewModel.text.observe(viewLifecycleOwner, Observer {
+            livePriceEditText.setText(it)
         })
         return root
     }
