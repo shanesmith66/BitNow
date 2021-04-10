@@ -1,7 +1,17 @@
-<resources>
+<resources xmlns:xlink="http://schemas.android.com/apk/res-auto">
     <string name="app_name">BitNow</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="live_price_string">Live Price Goes Here</string>
+    <string name="bitcoin_symbol">BTC</string>
+    <string name="equals_description">Equals Image</string>
+    <string name="disclaimer_text" >Powered by <a href="https://www.coindesk.com/price/bitcoin">CoinDesk</a></string>
+
+<!--string array for currency spinner-->
+    <string-array name="currency_array">
+        <item>USD</item>
+        <item>CAD</item>
+        <item>EUR</item>
+    </string-array>
 </resources>
