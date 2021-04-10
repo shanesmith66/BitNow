@@ -12,11 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bitnow.R
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     private val viewModel: LivePriceModel by lazy {
         ViewModelProvider(this).get(LivePriceModel::class.java)
     }
+
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
 
         // define spinner
         val spinner: Spinner = root.findViewById(R.id.currency_spinner)
+        spinner.onItemSelectedListener = this
         // Create an ArrayAdapter using the string array and a default spinner layout
         this.context?.let {
             ArrayAdapter.createFromResource(
@@ -53,6 +55,15 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        val selection = parent.getItemAtPosition(pos).toString()
+        viewModel.updateCurrency(selection)
+        println(selection)
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>) {
+        println("sweg")
+    }
 
 
 
