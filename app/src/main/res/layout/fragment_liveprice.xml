@@ -72,10 +72,11 @@
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/fiat_price_text"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:inputType="text"
+            tools:ignore="MissingConstraints"
             app:bootstrapSize="lg"
-            tools:ignore="MissingConstraints" />
+            app:bootstrapBrand="info" />
 
 
 
