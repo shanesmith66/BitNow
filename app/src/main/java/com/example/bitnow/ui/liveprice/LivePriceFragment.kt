@@ -21,10 +21,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
         ViewModelProvider(this).get(LivePriceModel::class.java)
     }
 
-    // declare variable to track whether first api request has been recieved
-    var firstReqReceived: Boolean = false;
-
-
+    var ignoreChange: Boolean = false // boolean to track whether or not to ignore text changes
 
 
     @SuppressLint("SetTextI18n")
@@ -39,56 +36,80 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         // define bitcoin_quantity_text
         val bitcoinQuantityText: EditText = root.findViewById(R.id.bitcoin_quantity_text)
+        bitcoinQuantityText.setText("1.0") // set text to 1 by default
 
         viewModel.text.observe(viewLifecycleOwner, Observer {
-            livePriceEditText.setText(it)
-            firstReqReceived = true
-//            bitcoinQuantityText.setText(viewModel.getQuantityAsString())
+            if (!ignoreChange) {
+                ignoreChange = true
+                val position = livePriceEditText.selectionStart
+                livePriceEditText.setText(it)
+                livePriceEditText.setSelection(position)
+                ignoreChange = false
+            }
         })
-
-
-        // set text to 1
 
 
         // add listener for when the bitcoin quantity text is edited by the user
         bitcoinQuantityText.addTextChangedListener(object: TextWatcher {
 
+            var currentText: String = bitcoinQuantityText.text.toString()
 
             override fun afterTextChanged(s: Editable?) {
-                val x: Double =
-                    if (bitcoinQuantityText.text.toString().isNotEmpty()) bitcoinQuantityText.text.toString().toDouble()
-                    else 0.0
-                viewModel.updateBitcoinQuantity(x)
+                if (!ignoreChange) {
+                    val x: Double? =
+                        if (bitcoinQuantityText.text.toString().isNotEmpty()) bitcoinQuantityText.text.toString().toDoubleOrNull()
+                        else 0.0
+
+                    if (x != null) {
+                        viewModel.updateBitcoinQuantity(x)
+                        currentText = bitcoinQuantityText.text.toString()
+
+                    }
+                    else {  // ignore input of invalid characters (non-numeric)
+                        val position = bitcoinQuantityText.selectionStart
+                        bitcoinQuantityText.setText(currentText)
+                        bitcoinQuantityText.setSelection(position)
+                    }
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val x: Double =
-                    if (bitcoinQuantityText.text.toString().isNotEmpty()) bitcoinQuantityText.text.toString().toDouble()
-                    else 0.0
-                viewModel.updateBitcoinQuantity(x)
             }
         })
 //
 //      add listener for when the livePriceEditText is edited by the user
         livePriceEditText.addTextChangedListener(object: TextWatcher {
 
+            var currentText: String = livePriceEditText.text.toString()
+
 
             override fun afterTextChanged(s: Editable?) {
-//                if (viewModel.responseIsReceived()) {
-//                    viewModel.updateBitcoinQuantity(viewModel.getPriceDisplayed()/viewModel.getRate())
-//                }
 
-//                if (firstReqReceived) {
-//                    viewModel.updateBitcoinQuantity(viewModel.getPriceDisplayed()/viewModel.getRate())
-//                }
+                if (!ignoreChange && livePriceEditText.text.toString() != "Infinity") {
+                    ignoreChange = true
+                    val x = viewModel.getEditableAsDouble(livePriceEditText.text)
+                    if (x != null) {
+                        if (x.isFinite())
+                        viewModel.updateBitcoinQuantity(x/viewModel.getRate())
+                    }
+                    else {  // ignore input of invalid characters (non-numeric)
+                        if (livePriceEditText.text.isEmpty()) { // if its empty set as nothing
+                            livePriceEditText.setText("")
+                        }
+                        else {
+                            livePriceEditText.setText(currentText)
+                        }
+                    }
+                    val position = livePriceEditText.selectionStart
+                    bitcoinQuantityText.setText(viewModel.getQuantityAsString())
+                    livePriceEditText.setSelection(position)
+                    currentText = livePriceEditText.text.toString()
+                    ignoreChange = false
 
-//                val x = viewModel.getPriceDisplayed()/viewModel.getRate()
-//                viewModel.updateBitcoinQuantity(x)
-//                bitcoinQuantityText.setText(viewModel.getQuantityAsString())
+                }
 
             }
 
@@ -96,26 +117,8 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                if (viewModel.responseIsReceived()) {
-//                    viewModel.updateBitcoinQuantity(viewModel.getPriceDisplayed()/viewModel.getRate())
-//                }
-
-//                if (firstReqReceived) {
-//                    viewModel.updateBitcoinQuantity(viewModel.getPriceDisplayed()/viewModel.getRate())
-//                }
-                if (firstReqReceived && livePriceEditText.text.toString() != "Infinity") {
-                    val x = viewModel.getEditableAsDouble(livePriceEditText.text)
-
-                    if (x != null) {
-                        if (x.isFinite())
-                            println("x = " + x)
-                            viewModel.updateBitcoinQuantity(x/viewModel.getRate())
-                    }
-
-                    bitcoinQuantityText.setText(viewModel.getQuantityAsString())
 
 
-                }
             }
 
         })

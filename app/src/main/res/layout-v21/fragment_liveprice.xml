@@ -12,28 +12,24 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_weight="1"
-        android:layout_height="0dp">
+        android:layout_height="0dp"
+        android:gravity="center"
+        >
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
 
             <com.beardedhen.androidbootstrap.BootstrapEditText
                 android:id="@+id/bitcoin_quantity_text"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:inputType="text"
+                android:layout_width="50dp"
+                android:inputType="number"
+                android:digits="0123456789."
                 tools:ignore="MissingConstraints"
                 app:bootstrapSize="lg"
-                app:bootstrapBrand="info" />
+                app:bootstrapBrand="info"
 
-        </LinearLayout>
+                />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+
 
             <com.beardedhen.androidbootstrap.BootstrapLabel
                 android:id="@+id/bitcoin_symbol_text"
@@ -46,11 +42,9 @@
                 android:textAlignment="center"
                 android:gravity="center_horizontal"
                 app:bootstrapText="@string/bitcoin_symbol"
-                android:padding="8dp"
-                android:paddingHorizontal="8dp"
+                android:layout_marginLeft="8dp"
                 android:backgroundTint="@color/primary_color"/>
 
-        </LinearLayout>
 
     </LinearLayout>
 
@@ -76,12 +70,17 @@
         android:layout_weight="1"
         android:layout_height="0dp">
 
-        <EditText
+        <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/fiat_price_text"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:inputType="text"
-            tools:ignore="MissingConstraints" />
+            android:layout_width="50dp"
+            android:inputType="number"
+            tools:ignore="MissingConstraints"
+            android:digits="0123456789."
+            app:bootstrapSize="lg"
+            app:bootstrapBrand="info" />
+
+
 
     </LinearLayout>
 
@@ -89,6 +88,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
+
 
         <Spinner
             android:id="@+id/currency_spinner"
