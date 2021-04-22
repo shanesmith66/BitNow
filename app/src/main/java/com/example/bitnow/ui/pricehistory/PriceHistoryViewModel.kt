@@ -14,7 +14,7 @@ class PriceHistoryViewModel : ViewModel() {
 
 
     // declare pricehistory object
-    private var priceHistory: PriceHistory? = null
+    private var priceHistory: PriceHistory = PriceHistory()
 
     private val _response = MutableLiveData<String>()
 
@@ -27,7 +27,8 @@ class PriceHistoryViewModel : ViewModel() {
     private val response: LiveData<String>
         get() = _response
 
-    private fun getPriceHistory() {
+    // function to get the price history from the api
+    fun getPriceHistory() {
 
         PriceHistoryApi.retrofitService.getProperties().enqueue(
                 object: Callback<PriceHistory> {
@@ -39,7 +40,7 @@ class PriceHistoryViewModel : ViewModel() {
 
                     override fun onResponse(call: Call<PriceHistory>, response: Response<PriceHistory>) {
                         _response.value = response.body().toString()
-                        priceHistory = response.body()
+                        priceHistory = response.body()!!
                         println("pricehistory.bpi = " + (priceHistory?.bpi))
                         println("pricehistory _response.value = " + _response.value)
                     }
@@ -48,6 +49,15 @@ class PriceHistoryViewModel : ViewModel() {
                 }
         )
 
+    }
+
+    fun getPricesAsArray(): Array<Any> {
+        println("getPricesAsArray = " + priceHistory.bpi.values.toTypedArray().toString())
+        return priceHistory.bpi.values.toTypedArray()
+    }
+
+    fun getPriceHistoryMap(): Map<String, Double>? {
+        return priceHistory?.bpi
     }
 
     private val _text = MutableLiveData<String>().apply {

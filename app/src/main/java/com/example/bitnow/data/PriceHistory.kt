@@ -11,6 +11,6 @@ import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class PriceHistory (
-    @field:Json(name="bpi")val bpi: Map<String, Double> // create a map of respective dates and prices
+    @field:Json(name="bpi")val bpi: Map<String, Double> = mapOf("None" to 0.0)// create a map of respective dates and prices
 
 )
