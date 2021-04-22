@@ -22,10 +22,6 @@ class LivePriceModel : ViewModel() {
 
     private var responseReceived = false // variable to indicate whether a response has been received
 
-    fun responseIsReceived():Boolean {
-        return responseReceived
-    }
-
     // call getLivePrice() on initialization
     init {
         getLivePrice()

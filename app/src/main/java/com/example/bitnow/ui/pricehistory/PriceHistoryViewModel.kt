@@ -1,5 +1,6 @@
 package com.example.bitnow.ui.pricehistory
 
+import android.os.NetworkOnMainThreadException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,11 @@ class PriceHistoryViewModel : ViewModel() {
     // declare pricehistory object
     private var priceHistory: PriceHistory = PriceHistory()
 
+    // declare priceDates object
+    private var priceDates: PriceDates = PriceDates()
+
     private val _response = MutableLiveData<String>()
+
 
     // call getPriceHistory on initialization
     init {
@@ -27,8 +32,16 @@ class PriceHistoryViewModel : ViewModel() {
     private val response: LiveData<String>
         get() = _response
 
+
+    // set priceHistory object
+    private fun setPriceHistory(response: Response<PriceHistory>) {
+        priceHistory = response.body()!!
+    }
+
+
     // function to get the price history from the api
-    fun getPriceHistory() {
+     private fun getPriceHistory() {
+
 
         PriceHistoryApi.retrofitService.getProperties().enqueue(
                 object: Callback<PriceHistory> {
@@ -39,32 +52,44 @@ class PriceHistoryViewModel : ViewModel() {
                     }
 
                     override fun onResponse(call: Call<PriceHistory>, response: Response<PriceHistory>) {
-                        _response.value = response.body().toString()
-                        priceHistory = response.body()!!
-                        println("pricehistory.bpi = " + (priceHistory?.bpi))
+                        _response.value = response.body()?.bpi?.values.toString()
+                        setPriceHistory(response)
+                        priceDates.setPrices(priceHistory.bpi.values.toTypedArray())
+                        priceDates.setDates(priceHistory.bpi.keys.toTypedArray())
+                        updatePriceHistory()
+                        println("priceDates from model = " + priceDates.getPrices().contentToString())
+                        println("pricehistory.bpi = " + (priceHistory.bpi))
                         println("pricehistory _response.value = " + _response.value)
                     }
 
 
-                }
-        )
+                })
+
+
+
 
     }
 
-    fun getPricesAsArray(): Array<Any> {
-        println("getPricesAsArray = " + priceHistory.bpi.values.toTypedArray().toString())
-        return priceHistory.bpi.values.toTypedArray()
-    }
-
-    fun getPriceHistoryMap(): Map<String, Double>? {
-        return priceHistory?.bpi
-    }
 
     private val _text = MutableLiveData<String>().apply {
         value = response.value // x start y end (dates)
     }
 
+    private val _prices = MutableLiveData<Array<Any>>().apply {
+        value = priceDates.getPrices()
+    }
+
+    val prices: LiveData<Array<Any>> = _prices
+
     val text: LiveData<String> = _text
+
+    fun getPriceDatesObject(): PriceDates {
+        return priceDates
+    }
+
+    private fun updatePriceHistory() {
+        _prices.value = priceDates.getPrices()
+    }
 
 
 }
