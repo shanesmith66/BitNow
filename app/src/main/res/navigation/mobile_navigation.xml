@@ -3,23 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_liveprice">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_liveprice"
         android:name="com.example.bitnow.ui.liveprice.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_liveprice"
         tools:layout="@layout/fragment_liveprice" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_pricehistory"
         android:name="com.example.bitnow.ui.pricehistory.PriceHistoryFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_pricehistory"
         tools:layout="@layout/fragment_pricehistory" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.bitnow.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
