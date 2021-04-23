@@ -15,6 +15,8 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAChart
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AADataLabels
 import com.github.aachartmodel.aainfographics.aaoptionsmodel.AASeries
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -32,6 +34,7 @@ class PriceHistoryFragment : Fragment() {
     private lateinit var priceDates: PriceDates
 
     private lateinit var prices: Array<Any>
+    private lateinit var dates: Array<Any>
 
 
     // values for starting date and ending date
@@ -47,6 +50,7 @@ class PriceHistoryFragment : Fragment() {
 
         priceDates = priceHistoryViewModel.getPriceDatesObject()
         prices = priceDates.getPrices()
+        dates = priceDates.getDates()
 
         val root = inflater.inflate(R.layout.fragment_pricehistory, container, false)
 
@@ -73,6 +77,7 @@ class PriceHistoryFragment : Fragment() {
                                 )
                         )
 
+                aaChartModel.yAxisTitle("Price(USD)")
                 // draw chart
                 aaChartView.aa_drawChartWithChartModel(aaChartModel)
             }

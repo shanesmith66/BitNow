@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_liveprice"
-        android:name="com.example.bitnow.ui.liveprice.HomeFragment"
+        android:name="com.example.bitnow.ui.liveprice.LivePriceFragment"
         android:label="@string/title_liveprice"
         tools:layout="@layout/fragment_liveprice" />
 

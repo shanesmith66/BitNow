@@ -14,7 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.bitnow.R
 
-class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
+class LivePriceFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // declare model
     private val viewModel: LivePriceModel by lazy {
@@ -42,7 +42,7 @@ class HomeFragment : Fragment(), AdapterView.OnItemSelectedListener {
             if (!ignoreChange) {
                 ignoreChange = true
                 val position = livePriceEditText.selectionStart
-                livePriceEditText.setText(it)
+                livePriceEditText.setText("$$it")
                 livePriceEditText.setSelection(position)
                 ignoreChange = false
             }
