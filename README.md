@@ -65,27 +65,26 @@ The app also contains a pricehistory feature which will show a line chart of the
 * - this feature has not yet been implemented and will be included in a later release. As of right now, the price history date range is hard-coded into the application.
 
 <h1 id="screenshots"><strong>Screenshots</strong></h1>
-<p align="center">
   
-<img src="https://i.imgur.com/l7ZBRyc.png">
-<h4 align="center"><i> The app on startup. </i></h4>
+<p align="center"><img src="https://i.imgur.com/l7ZBRyc.png"></img>
+<h4 align="center"><i> The app on startup. </i></h4></p>
 
-<img src="https://i.imgur.com/VowTS3e.png">
-<h4 align="center"><i> The app showing different currency selection and bitcoin quantity input. </i></h4>
+<p align="center"><img src="https://i.imgur.com/VowTS3e.png"></img>
+<h4 align="center"><i> The app showing different currency selection and bitcoin quantity input. </i></h4></p>
 
-<img src="https://i.imgur.com/AYLopxb.png">
-<h4 align="center"><i> Showcasing the currency dropdown. </i></h4>
+<p align="center"><img src="https://i.imgur.com/AYLopxb.png"></img>
+<h4 align="center"><i> Showcasing the currency dropdown. </i></h4></p>
 
-<img src="https://i.imgur.com/gzX6JI6.png">
-<h4 align="center"><i> Custom FIAT money input </i></h4>
+<p align="center"><img src="https://i.imgur.com/gzX6JI6.png"></img>
+<h4 align="center"><i> Custom FIAT money input </i></h4></p>
 
-<img src="https://i.imgur.com/VIhX70x.png">
-<h4 align="center"><i> Price History Screen </i></h4>
+<p align="center"><img src="https://i.imgur.com/VIhX70x.png"></img>
+<h4 align="center"><i> Price History Screen </i></h4></p>
 
-<img src="https://i.imgur.com/l7ZBRyc.png">
-<h4 align="center"><i> The app on startup </i></h4>
+<p align="center">
+![ Alt text](priceHistoryChartAnimation.gif) / ! [](priceHistoryChartAnimation.gif)
+<h4 align="center"><i> The Price History Chart Animation </i></h4></p>
 
-</p>
 
 <h1 id="installationInstructions"><strong>Installation Instructions</strong></h1>
 
