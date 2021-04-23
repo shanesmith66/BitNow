@@ -7,13 +7,6 @@ class PriceDates {
     private var prices: Array<Any> = priceDatesMap.values.toTypedArray()
     private var dates: Array<Any> = priceDatesMap.keys.toTypedArray()
 
-    fun getPriceDatesMap(): Map<String, Double> {
-        return priceDatesMap
-    }
-
-    fun setPriceDatesMap(map: Map<String, Double>) {
-        this.priceDatesMap = map
-    }
 
     fun getPrices(): Array<Any> {
         return prices

@@ -3,7 +3,7 @@ package com.example.bitnow.data
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
-
+// sample response:
 //{"time":
 //  {"updated":"Apr 4, 2021 18:37:00 UTC","updatedISO":"2021-04-04T18:37:00+00:00","updateduk":"Apr 4, 2021 at 19:37 BST"},
 //  "disclaimer":"This data was produced from the CoinDesk Bitcoin Price Index (USD). Non-USD currency data converted using hourly conversion rate from openexchangerates.org",

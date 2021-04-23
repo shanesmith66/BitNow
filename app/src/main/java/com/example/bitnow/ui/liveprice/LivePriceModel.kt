@@ -9,7 +9,6 @@ import com.example.bitnow.data.CoinDeskApi
 import com.example.bitnow.data.LivePrice
 import retrofit2.Call
 import retrofit2.Response
-import java.lang.Double.parseDouble
 import java.math.RoundingMode
 
 class LivePriceModel : ViewModel() {
@@ -93,11 +92,8 @@ class LivePriceModel : ViewModel() {
             updatePriceDisplay()
     }
 
-    // function to get the current price displayed on screen as a double
-    fun getPriceDisplayed(): Double {
-        return price.getPrice()
-    }
 
+    // gets current quantity as a string rounded to 6 decimal places
     fun getQuantityAsString(): String {
         return price.getQuantity().toBigDecimal().setScale(6, RoundingMode.CEILING).toString() // keep 6 decimal places only
     }
@@ -126,14 +122,6 @@ class LivePriceModel : ViewModel() {
 
         updatePriceDisplay()
 
-    }
-
-    fun setPrice() {
-        price.setPrice()
-    }
-
-    fun updatePrice(p: Double) {
-        price.setPrice(p)
     }
 
     // function to update the price

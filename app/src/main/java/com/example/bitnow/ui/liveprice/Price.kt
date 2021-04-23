@@ -1,6 +1,5 @@
 package com.example.bitnow.ui.liveprice
 
-import java.util.*
 
 // price class which will hold values to display to the user aka currency, quantity, price in $
 class Price constructor(currency: String, quantity:Double, rate: Double){
