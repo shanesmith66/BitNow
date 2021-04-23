@@ -1,4 +1,8 @@
-<h1><strong>BitNow</strong></h1>
+<h1>
+  <strong>BitNow </strong><img alt="Kotlin" src="https://img.shields.io/badge/kotlin-%230095D5.svg?&style=for-the-badge&logo=kotlin&logoColor=white"/> <img alt="Android" src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white" /> <img alt="Bootstrap" src="https://img.shields.io/badge/bootstrap-%23563D7C.svg?&style=for-the-badge&logo=bootstrap&logoColor=white"/> <img alt="Bitcoin" src="https://img.shields.io/badge/Bitcoin-000000?style=for-the-badge&logo=bitcoin&logoColor=white" />
+
+
+</h1>
 <img src="https://i.imgur.com/RKkwcgJ.png">
 
 
@@ -25,7 +29,6 @@
     </h3>
   </li>
   <li>
-   <li>
     <h3>
       <a href="#howToContribute">How To Contribute</a>
     </h3>
@@ -169,8 +172,10 @@ All data used in this app is retrieved from the<a href="https://www.coindesk.com
   <li> <a href="https://www.coindesk.com/coindesk-api">CoinDesk</a> Used to retrieve real-time bitcoin price updates and price history updates</li>
   <li> <a href="https://github.com/Bearded-Hen/Android-Bootstrap#:~:text=Android%20Bootstrap%20is%20an%20Android,familiar%20with%20the%20Bootstrap%20Framework.">Bootstrap</a> used to help create UI </li>
   <li> <a href="https://www.canva.com/">Canva</a> used to create some images and logos </li>
+  <li> <a href="https://github.com/Ileriayo/markdown-badges#how-to-use">Markdown Badges</a></li>
 
 </ul>
+
 
 
 
